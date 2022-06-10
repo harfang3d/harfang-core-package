@@ -1,3 +1,4 @@
+// HARFANG(R) Copyright (C) 2021 Emmanuel Julien, NWNC HARFANG. Released under GPL/LGPL/Commercial Licence, see licence.txt for details.
 #include <bgfx_shader.sh>
 
 #define PI 3.14159265359
