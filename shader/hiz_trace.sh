@@ -87,8 +87,8 @@ float hiz_trace(vec3 ray_o, vec3 ray_d, mat4 proj, float z_near, int max_iterati
 		}
 	}
 
-	vec2 k_fade = saturate((ray.xy - viewport_min) / (u_viewRect.zw * 0.1));
-	k_fade *= saturate(vec2(1.0, 1.0) - (ray.xy - viewport_max * 0.9) / (u_viewRect.zw * 0.1));
+	vec2 k_fade = saturate((ray.xy - viewport_min.xy) / (u_viewRect.zw * 0.1));
+	k_fade *= saturate(vec2(1.0, 1.0) - (ray.xy - viewport_max.xy * 0.9) / (u_viewRect.zw * 0.1));
 
 	ray.xy /= u_depthTexInfos.xy;
 
