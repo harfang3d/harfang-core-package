@@ -97,7 +97,7 @@ void main() {
 	}
 
 	color /= sample_count * sample_count;
-	color = (saturate(color) / 32.0) * 32.0;
+	color = clamp(color, 0.0, 32.0); // [FG] Avoid high intensity HDR probes from saturating the SSR buffer.
 #endif
 
 	gl_FragColor = color;
