@@ -8,27 +8,27 @@ uniform vec4 u_depthTexInfos; // width(x) heigh(y) start mipmap level(z) max mip
 
 //
 vec3 ray_step_cell(vec3 ray, vec3 dir, float step, vec2 z_range) {
-	float t_ = 100000000.0; // [EJ] any large value is ok
+	float t = 100000000.0; // [EJ] any large value is ok
 
 	if (dir.x > 0.0)
-		t_ = min(t_, (floor(ray.x / step + 1.0) * step - ray.x) / dir.x);
+		t = min(t, (floor(ray.x / step + 1.0) * step - ray.x) / dir.x);
 	else if (dir.x < 0.0)
-		t_ = min(t_, (ceil(ray.x / step - 1.0) * step - ray.x) / dir.x);
+		t = min(t, (ceil(ray.x / step - 1.0) * step - ray.x) / dir.x);
 
 	if (dir.y > 0.0)
-		t_ = min(t_, (floor(ray.y / step + 1.0) * step - ray.y) / dir.y);
+		t = min(t, (floor(ray.y / step + 1.0) * step - ray.y) / dir.y);
 	else if (dir.y < 0.0)
-		t_ = min(t_, (ceil(ray.y / step - 1.0) * step - ray.y) / dir.y);
+		t = min(t, (ceil(ray.y / step - 1.0) * step - ray.y) / dir.y);
 
 	if (dir.z > 0.0) {
 		if (ray.z < z_range.x)
-			t_ = min(t_, (z_range.x - ray.z) / dir.z);
+			t = min(t, (z_range.x - ray.z) / dir.z);
 	} else if (dir.z < 0.0) {
 		if (ray.z > z_range.y)
-			t_ = min(t_, (z_range.y - ray.z) / dir.z);
+			t = min(t, (z_range.y - ray.z) / dir.z);
 	}
 
-	return ray + dir * t_;
+	return ray + dir * t;
 }
 
 float hiz_trace(vec3 ray_o, vec3 ray_d, mat4 proj, float z_near, int max_iterations, out vec3 ray) {
